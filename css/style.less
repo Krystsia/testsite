@@ -1,0 +1,366 @@
+/*********************variables********************/
+
+@green: #78bb37;
+@grey: #ecedee;
+@blue: #3d6da4;
+@darkblue: #374856;
+@darkgrey: #cbcbcb;
+@textcolor: #606469;
+    
+
+/**********************mixins*********************/
+.bottom-line{
+    box-shadow: inset 0 -1px white,inset 0 -2px @darkgrey;
+}
+.background(@image){
+    background: @image no-repeat;
+    background-size: cover;
+}
+.center(){
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.border-radius(@radius){
+    -webkit-border-radius: @radius;
+    border-radius: @radius;
+}
+.btn{
+    .border-radius(2px);
+}
+.btn-gross{
+    
+    display: inline-block;
+    
+    a{
+        display: block;
+        width: inherit;
+        height: inherit;
+        padding: 20px 60px;
+        background: @green;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        font-weight: 400;
+        color: inherit;
+        box-shadow: inset 0 -1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(0, 0, 0, 0.17);
+        .border-radius(2px);
+        
+        &:hover{
+           box-shadow: inset 0 2px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+.before(@background){
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+     
+    background: @background;
+}
+
+.mixinborder(@w) when (@w>5){
+    border: 4px solid white;
+}
+.mixinborder(@w) when (default()){
+    border: 4px solid red;
+}
+
+.padding(@t: 34px, @r: 55px, @b: 200px, @l: 330px) {
+  & when not (@t = none) { padding-top:@t; }
+  & when not (@r = none) { padding-left: @r; }
+  & when not (@b = none) { padding-right: @b; }
+  & when not (@l = none) { padding-bottom: @l; }
+}
+
+/**********************noLess*********************/
+
+html,body{
+    color: white;
+    background: @grey;
+    height: 100%;
+    width: 100%;    
+    font: normal 12px 'Open Sans', sans-serif;
+    
+}
+header{
+    box-sizing: border-box;
+    height: 426px;
+    .background(url(../img/header-bg.jpg));
+    padding-top: 90px;
+    overflow: hidden;
+    color: white;
+}
+.super-man{
+    width: 518px;
+    height: 426px-90px;
+    position: absolute;
+    right: 0;
+    background: url(../img/super-man.png) no-repeat top right -44px;
+}
+
+.wrapper,.wrapper1{
+    width: 90%;
+    min-width: 980px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    
+}
+.wrapper1{
+    overflow: visible;
+}
+.citation{
+    font-style: italic;
+    max-width: inherit;
+    
+}
+.citation__cite{
+    display: block;
+    width: 660px;
+    font-size: 2em;
+    line-height: 36px;
+    margin-bottom: 20px;
+    
+}
+.citation__author{
+    margin-bottom: 50px;
+    span{
+     color:lighten(rgba(70, 92, 100, 0.5),50%);
+    }
+}
+.citation__line{
+    width: 70px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-bottom: 30px;
+}
+
+h2{
+    padding: 50px 0 46px 0;
+    font-size: 2.666em;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: @darkblue;
+    line-height: 40px;
+    text-align: center;
+    .bottom-line;
+    margin-bottom: 30px;
+
+    
+}
+
+.menu{
+    text-align: center;
+    font-size: 0;
+    margin-bottom: 30px;
+}
+.menu__btn{
+    display: inline-block;
+    margin-right: 9px;
+    margin-bottom: 9px;
+    a{
+        display: block;
+        padding: 10px 20px;
+        font-size: 14px;
+        text-transform: capitalize;
+        color: @textcolor;
+        background: white;
+        .btn;
+        border: 1px solid @darkgrey;
+        transition: .1s ease;
+        &:hover{
+            background: @green;
+            color: white;
+            transition: .1s ease;
+        }
+    }
+}
+.menu__btn_active{
+    a{
+        color: white;
+        background: #6dae46;
+        box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.19);
+    }
+}
+
+.table{
+    overflow-x: hidden;
+    margin-bottom: 30px;
+    
+}
+
+table{
+    
+    color:@darkblue;
+    width: 100%;
+    td,th{
+        .bottom-line;
+    }
+}
+thead{
+    th{
+        
+        text-transform: uppercase;
+        height: 50px;
+        background: rgba(55, 72, 86, 0.08);
+        border-right: 1px solid @grey;
+        text-align: left;
+        vertical-align: middle;
+        padding: 0 20px;
+     
+    }
+    
+    
+}
+.table-salary__th,.table-salary,.table-cost__th,.table-cost{
+    text-align: right;
+}
+.table-icon__th,.table-icon{
+    text-align: center;
+}
+tbody{
+   tr{
+       height: 90px;
+       td{
+           vertical-align: middle;
+           padding: 0 20px;
+       }
+   } 
+}
+.table-salary{
+    color: @darkblue;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+.table-icon{
+    .background(url(../img/ok.png));
+    background-size: 26px;
+    background-position: center;
+}
+.table-cost{
+    color:@blue;
+    font-size: 2.666em;
+    font-weight: bold;
+}
+.table-customer{
+    font-size: 0;
+}
+.table-customer__portret{
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    .background(url(../img/portret1.jpg));
+    .border-radius(50%);
+}
+.table-customer__info{
+    color: @blue;
+    font-weight: bold;
+    box-sizing: border-box;
+    font-size: 12px;
+    display: inline-block;
+    height: 46px;
+    vertical-align: top;
+    padding: 6px 8px;
+    span{
+        color: #919aa1;
+        font-weight: 400;
+    }
+    
+}
+.toggle{
+    text-align: center;
+    font-size: 0;
+    margin-bottom: 30px;
+}
+.toggle__cercle{
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 10px;
+    height: 14px;
+    width: 14px;
+    .border-radius(50%);
+    background: @darkgrey;
+    
+}
+.toggle__cercle_active{
+    background: #3d6ca6; 
+}
+
+.alert{
+    color: @darkblue;
+    font-size: 2em;
+    padding: 200px 0;
+    text-align: center;
+    .bottom-line;
+}
+
+
+@media screen and (max-width: 980px){
+    .wrapper,.wrapper1{
+        min-width: 680px;
+    }
+    table{
+        width: 1120px;
+        
+    }
+    .table{
+       overflow-x: scroll !important; 
+    }
+    .super-man{
+        
+        background-size: 70%;
+        background-position:  right 100px;
+        
+    }
+    .citation__cite{
+        
+    }
+}
+@media screen and (max-width: 680px){
+    .wrapper,.wrapper1{
+        min-width: 480px;
+    }
+   .super-man{
+        display: none;
+     
+        
+    }
+    header{
+        padding: 60px 0;
+    } 
+    .citation__cite{
+        width: 100%;
+    }
+    .btn-gross{
+        display: block;
+        text-align: center;
+        
+    }
+}
+@media screen and (max-width: 490px){
+    .wrapper,.wrapper1{
+        min-width: 240px;
+    }
+    .citation__cite{
+        font-size: 1.5em;
+    }
+    .btn-gross a{
+        font-size: 1em;
+        font-weight: bold;
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
